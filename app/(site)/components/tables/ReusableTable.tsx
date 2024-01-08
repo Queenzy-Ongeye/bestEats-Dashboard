@@ -23,7 +23,7 @@ interface Props<T extends object> {
   tableColumns: Column<T>[];
   tableData: any;
   title: string;
-  wardName: string;
+  fileName: string;
   dateFirst: string;
   dateEnd: string;
   headers: any;
@@ -33,7 +33,7 @@ const ReusableTable = <T extends Record<string, any>>({
   tableColumns,
   tableData,
   title,
-  wardName,
+  fileName,
   // dateFirst,
   // dateEnd,
   headers,
@@ -97,7 +97,7 @@ const ReusableTable = <T extends Record<string, any>>({
   };
 
   const filename = `${title} ${
-    wardName && `- ${wardName} ward`
+    fileName && `- ${fileName} ward`
   } as of ${todayDate}`;
   //=============== End Export CSV File Either all data or selected ward =======
 
@@ -130,16 +130,6 @@ const ReusableTable = <T extends Record<string, any>>({
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-40 sm:w-80 md:w-120 pl-10 p-2.5"
                 placeholder="Search for items..."
               />
-            </div>
-            <div className="hidden md:flex items-center gap-2 mx-4 bg-orange-200  px-2 py-1.5  transition-colors duration-200 border rounded-md text-orange-600 border-orange-500 hover:text-green-700 hover:bg-green-100  hover:border-green-300">
-              <CSVLink
-                data={getCurrentData(headers, tableRows)}
-                headers={headers}
-                filename={filename}
-              >
-                Export
-              </CSVLink>
-              <FaFileExport className="font-lg" />
             </div>
           </div>
         </div>
