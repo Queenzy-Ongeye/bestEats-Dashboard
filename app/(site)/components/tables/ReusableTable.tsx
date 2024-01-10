@@ -15,7 +15,7 @@ import {
 
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
 import { HiOutlineSearch } from "react-icons/hi";
-import { FaFileExport } from "react-icons/fa";
+import "regenerator-runtime";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 
@@ -23,10 +23,10 @@ interface Props<T extends object> {
   tableColumns: Column<T>[];
   tableData: any;
   title: string;
-  fileName: string;
-  dateFirst: string;
-  dateEnd: string;
-  headers: any;
+  fileName?: string;
+  dateFirst?: string;
+  dateEnd?: string;
+  headers?: any;
 }
 
 const ReusableTable = <T extends Record<string, any>>({
@@ -69,7 +69,7 @@ const ReusableTable = <T extends Record<string, any>>({
   }: any = tableInstance;
 
   const [value, setValue] = useState(globalFilter);
-  const onChange = useAsyncDebounce((value: any) => {
+  const onChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
   }, 200);
 
