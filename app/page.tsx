@@ -1,11 +1,24 @@
-import Image from "next/image";
+"use client";
 import GraphPage from "./(site)/components/graphs";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { LuCircleDollarSign } from "react-icons/lu";
 import { IoAnalyticsOutline } from "react-icons/io5";
 import { HiOutlineTicket } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ReusableTable from "./(site)/components/tables/ReusableTable";
+import { dashBoardData } from "./(site)/components/tables/tableData";
 
 export default function Home() {
+  const [data, setData] = useState([]);
+
+  // Using useEffect to call the API once mounted and set the data
+  useEffect(() => {
+    (async () => {
+      const result = await axios("https://api.tvmaze.com/search/shows?q=snow");
+      setData(result.data);
+    })();
+  }, []);
   return (
     <main className="flex min-h-screen flex-col ">
       <div className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2 xl:grid-cols-4">
@@ -82,6 +95,15 @@ export default function Home() {
         </div>
       </div>
       <GraphPage />
+      <ReusableTable
+        tableColumns={dashBoardData}
+        tableData={data}
+        title={""}
+        fileName={""}
+        dateFirst={""}
+        dateEnd={""}
+        headers={undefined}
+      />{" "}
     </main>
   );
 }
