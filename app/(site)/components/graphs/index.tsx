@@ -97,9 +97,9 @@ const GraphPage = () => {
                     <div
                       className="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-3/5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                       role="progressbar"
-                      aria-valuenow="60"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
+                      aria-valuenow={60}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
                     ></div>
                   </div>
                 </div>
@@ -119,9 +119,9 @@ const GraphPage = () => {
                     <div
                       className="duration-600 ease-soft -mt-0.38 w-9/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                       role="progressbar"
-                      aria-valuenow="90"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
+                      aria-valuenow={90}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
                     ></div>
                   </div>
                 </div>
@@ -139,9 +139,9 @@ const GraphPage = () => {
                     <div
                       className="duration-600 ease-soft -mt-0.38 w-3/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                       role="progressbar"
-                      aria-valuenow="30"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
+                      aria-valuenow={30}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
                     ></div>
                   </div>
                 </div>
@@ -159,9 +159,9 @@ const GraphPage = () => {
                     <div
                       className="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-1/2 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all"
                       role="progressbar"
-                      aria-valuenow="50"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
+                      aria-valuenow={50}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
                     ></div>
                   </div>
                 </div>
