@@ -7,7 +7,7 @@ import { HiOutlineTicket } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReusableTable from "./(site)/components/tables/ReusableTable";
-import { dashBoardData } from "./(site)/components/tables/tableData";
+import { dashBoardData } from "./(site)/components/tables/tableColumns";
 
 export default function Home() {
   const [data, setData] = useState([]);
