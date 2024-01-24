@@ -98,12 +98,12 @@ export default function Home() {
       <ReusableTable
         tableColumns={dashBoardData}
         tableData={data}
-        title={""}
+        title={"Best Eats Reports"}
         fileName={""}
         dateFirst={""}
         dateEnd={""}
         headers={undefined}
-      />{" "}
+      />
     </main>
   );
 }

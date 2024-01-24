@@ -22,21 +22,20 @@ import { useRouter } from "next/navigation";
 interface Props<T extends object> {
   tableColumns: Column<T>[];
   tableData: any;
+  path: string;
+  headers: any;
   title: string;
-  fileName?: string;
-  dateFirst?: string;
-  dateEnd?: string;
-  headers?: any;
+  onRowClick?: any;
+  routerAccess?: any;
 }
 
 const ReusableTable = <T extends Record<string, any>>({
   tableColumns,
   tableData,
   title,
-  fileName,
-  // dateFirst,
-  // dateEnd,
+  path,
   headers,
+  routerAccess
 }: Props<T>) => {
   const data = useMemo(() => tableData, [tableData]);
   const columns = useMemo(() => tableColumns, [tableColumns]);
@@ -96,18 +95,19 @@ const ReusableTable = <T extends Record<string, any>>({
     return currentData;
   };
 
-  const filename = `${title} ${
-    fileName && `- ${fileName} ward`
-  } as of ${todayDate}`;
   //=============== End Export CSV File Either all data or selected ward =======
 
   // ================ start 0f Row click handler =============== //
-
+  const [loading, setLoading] = useState(false);
+  const [clickedRowId, setClickedRowId] = useState(null);
   const router = useRouter();
-  const handleRowClick = (event: any, clickedId: string) => {
-    event.preventDefault();
-    // router.push({ pathname: "/schoolDetails/[id]" id: clickedId } });
-    router.push(`/schoolDetails/` + encodeURIComponent(clickedId));
+   const handleRowClick = (rowId: any) => {
+    setClickedRowId(rowId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      router.push(`${path}/${rowId}`);
+    }, 5000);
   };
   // ================ End 0f Row click handler =============== //
   return (
@@ -178,8 +178,14 @@ const ReusableTable = <T extends Record<string, any>>({
                 <tr
                   {...row.getRowProps()}
                   key={row.id}
-                  className="hover:bg-gray-200 cursor-pointer"
-                  onClick={(event) => handleRowClick(event, row.original.id)}
+                  className={`hover:bg-gray-200 cursor-pointer ${
+                    clickedRowId === row.original[routerAccess ?? "id"]
+                      ? "bg-gray-200"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    handleRowClick(row.original[routerAccess ?? "id"])
+                  }
                 >
                   {row.cells.map((cell: any) => {
                     return (

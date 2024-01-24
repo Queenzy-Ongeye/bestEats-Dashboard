@@ -7,9 +7,9 @@ export const ReusableButtonLink = ({ href, children }: any) => {
       <Link href={href} className="">
         <button
           type="button"
-          className="btn btn-sm border border-green-500 text-gray-600 p-2 rounded-lg js-sweetalert flex"
+          className="border border-green-500 text-gray-600 p-2 rounded-lg items-center space-x-1 grid grid-cols-2"
         >
-          {children} <FaEye className="m-auto"/>
+          {children} <FaEye size={15} className="ml-2"/>
         </button>
       </Link>
     </>

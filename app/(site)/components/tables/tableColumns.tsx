@@ -72,7 +72,7 @@ export const ordersColumns:ColumnType[] = [
     Header: "Dispatch Status",
     accessor: "dispatch_status",
     Cell: ({ value }: any) => (
-      <span className={`bg-${value ? 'green-500' : 'red-500'}`}>
+      <span className={`${value ? 'bg-green-500 text-white p-2 rounded-md' : 'bg-red-500 text-white p-2 rounded-md'}`}>
         {value ? "Ready for Pickup" : "Not Dispatched"}
       </span>
     ),
@@ -92,14 +92,20 @@ export const ordersColumns:ColumnType[] = [
     Header: "Action",
     accessor: "",
     sortType: "basic",
-    Cell: (cell: any) => (
+    Cell: (row: any) => (
       <span className="" >
         <ReusableButtonLink
-        href={"/sms/students/" + encodeURIComponent(cell?.id)}
+        href={"/orders/" + encodeURIComponent(row?.original?.id)}
         >
           View
         </ReusableButtonLink>
       </span>
     ) 
   },
+];
+
+export const socialTrafficColumns = [
+  {
+
+  }
 ]
