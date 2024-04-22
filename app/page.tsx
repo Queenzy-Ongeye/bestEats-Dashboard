@@ -7,10 +7,18 @@ import { HiOutlineTicket } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReusableTable from "./(site)/components/tables/ReusableTable";
-import { dashBoardData } from "./(site)/components/tables/tableColumns";
+import { dashBoardData, ordersColumns } from "./(site)/components/tables/tableColumns";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [orderData, setOrderData] = useState<[]>([])
+
+  useEffect(() => {
+    (async () => {
+      const orderData = await axios("/orderReport.json")
+      setOrderData(orderData.data)
+    })()
+  }, [])
 
   // Using useEffect to call the API once mounted and set the data
   useEffect(() => {
@@ -28,7 +36,7 @@ export default function Home() {
             <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
               Value
             </h6>
-            <span className="text-xl font-semibold">$30,000</span>
+            <span className="text-xl font-semibold text-black">$30,000</span>
             <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
               +4.4%
             </span>
@@ -46,7 +54,7 @@ export default function Home() {
             <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
               Users
             </h6>
-            <span className="text-xl font-semibold">50,021</span>
+            <span className="text-xl font-semibold text-black">50,021</span>
             <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
               +2.6%
             </span>
@@ -64,7 +72,7 @@ export default function Home() {
             <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
               Orders
             </h6>
-            <span className="text-xl font-semibold">45,021</span>
+            <span className="text-xl font-semibold text-black">45,021</span>
             <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
               +3.1%
             </span>
@@ -82,7 +90,7 @@ export default function Home() {
             <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
               Tickets
             </h6>
-            <span className="text-xl font-semibold">20,516</span>
+            <span className="text-xl font-semibold text-black">20,516</span>
             <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
               +3.1%
             </span>
@@ -96,14 +104,11 @@ export default function Home() {
       </div>
       <GraphPage />
       <ReusableTable
-        tableColumns={dashBoardData}
-        tableData={data}
-        title={"Best Eats Reports"}
-        fileName={""}
-        dateFirst={""}
-        dateEnd={""}
+        tableColumns={ordersColumns}
+        tableData={orderData}
+        title={"Order Details"}
         headers={undefined}
-      />
+        path={"/orders/"} />
     </main>
   );
 }
