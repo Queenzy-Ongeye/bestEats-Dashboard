@@ -7,18 +7,24 @@ import { HiOutlineTicket } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReusableTable from "./(site)/components/tables/ReusableTable";
-import { dashBoardData, ordersColumns } from "./(site)/components/tables/tableColumns";
+import {
+  dashBoardData,
+  ordersColumns,
+} from "./(site)/components/tables/tableColumns";
+import { CardItems } from "./(site)/components/summarycards/CardItems";
+import { IconBaseProps } from "react-icons";
+import SummaryCards from "./(site)/components/summarycards";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [orderData, setOrderData] = useState<[]>([])
+  const [orderData, setOrderData] = useState<[]>([]);
 
   useEffect(() => {
     (async () => {
-      const orderData = await axios("/orderReport.json")
-      setOrderData(orderData.data)
-    })()
-  }, [])
+      const orderData = await axios("/orderReport.json");
+      setOrderData(orderData.data);
+    })();
+  }, []);
 
   // Using useEffect to call the API once mounted and set the data
   useEffect(() => {
@@ -28,87 +34,25 @@ export default function Home() {
     })();
   }, []);
   return (
-    <main className="flex min-h-screen flex-col ">
+    <main className="min-h-screen">
       <div className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2 xl:grid-cols-4">
-        {/* <!-- Value card --> */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
-          <div>
-            <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-              Value
-            </h6>
-            <span className="text-xl font-semibold text-black">$30,000</span>
-            <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
-              +4.4%
-            </span>
-          </div>
-          <div>
-            <span>
-              <LuCircleDollarSign className="w-12 h-12 text-gray-400 dark:text-primary-dark" />
-            </span>
-          </div>
-        </div>
-
-        {/* <!-- Users card --> */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
-          <div>
-            <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-              Users
-            </h6>
-            <span className="text-xl font-semibold text-black">50,021</span>
-            <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
-              +2.6%
-            </span>
-          </div>
-          <div>
-            <span>
-              <HiOutlineUsers className="w-12 h-12 text-gray-400 dark:text-primary-dark" />
-            </span>
-          </div>
-        </div>
-
-        {/* <!-- Orders card --> */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
-          <div>
-            <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-              Orders
-            </h6>
-            <span className="text-xl font-semibold text-black">45,021</span>
-            <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
-              +3.1%
-            </span>
-          </div>
-          <div>
-            <span>
-              <IoAnalyticsOutline className="w-12 h-12 text-gray-400 dark:text-primary-dark" />
-            </span>
-          </div>
-        </div>
-
-        {/* <!-- Tickets card --> */}
-        <div className="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
-          <div>
-            <h6 className="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
-              Tickets
-            </h6>
-            <span className="text-xl font-semibold text-black">20,516</span>
-            <span className="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
-              +3.1%
-            </span>
-          </div>
-          <div>
-            <span>
-              <HiOutlineTicket className="w-12 h-12 text-gray-400 dark:text-primary-dark" />
-            </span>
-          </div>
-        </div>
+        {CardItems.map((cardItem) => (
+          <SummaryCards
+            title={cardItem.title}
+            figure={cardItem.figure}
+            percentage={cardItem.percentage}
+            icon={cardItem.icon}
+          />
+        ))}
       </div>
       <GraphPage />
       <ReusableTable
         tableColumns={ordersColumns}
         tableData={orderData}
-        title={"Order Details"}
+        title={"Delivery Details"}
         headers={undefined}
-        path={"/orders/"} />
+        path={"/orders/"}
+      />
     </main>
   );
 }
