@@ -23,7 +23,7 @@ const Header = () => {
 
   const menuItems = [
     {
-      icon: <LuLayoutDashboard  size={25} className="mr-4" />,
+      icon: <LuLayoutDashboard size={25} className="mr-4" />,
       text: "Dashboard",
       route: "/",
     },
@@ -52,22 +52,24 @@ const Header = () => {
           Best <span className="font-bold">Eats</span>
         </h1>
         <div className="hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]">
-          <p
+          <Link
             className={`${
               selectedOption === "delivery" ? "bg-black text-white" : ""
             } rounded-full p-2 cursor-pointer`}
             onClick={() => handleOptionClick("delivery")}
+            href={"/"}
           >
             Delivery
-          </p>
-          <p
+          </Link>
+          <Link
             className={`${
               selectedOption === "pickup" ? "bg-black text-white" : ""
             } rounded-full p-2 cursor-pointer`}
             onClick={() => handleOptionClick("pickup")}
+            href={"/pickup"}
           >
             Pickup
-          </p>
+          </Link>
         </div>
       </div>
 
