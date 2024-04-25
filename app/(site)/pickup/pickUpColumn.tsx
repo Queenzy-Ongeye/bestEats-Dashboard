@@ -9,7 +9,8 @@ interface ColumnType {
 export const pickupColumns:ColumnType[] = [
     {
       Header: "Pick-Up No.",
-      accessor: "id",
+      accessor: "",
+      Cell:({row}: any) => row.index +1,
       sortType:"basic"
     },
     {
@@ -42,3 +43,21 @@ export const pickupColumns:ColumnType[] = [
       ) 
     },
   ];
+
+export const customerDetails = [
+  {
+    Header: "Product",
+    accessor: "product_name",
+    sortType:"basic"
+  },
+  {
+    Header: "Item Quantity",
+    accessor: "quantity",
+    sortType: "basic"
+  },
+  {
+    Header: "Item price",
+    accessor: "price",
+    sortType: "basic"
+  },
+]
