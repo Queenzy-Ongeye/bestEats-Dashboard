@@ -36,8 +36,9 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <div className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2 xl:grid-cols-4">
-        {CardItems.map((cardItem) => (
+        {CardItems.map((cardItem, index) => (
           <SummaryCards
+            key={index}
             title={cardItem.title}
             figure={cardItem.figure}
             percentage={cardItem.percentage}

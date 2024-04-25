@@ -12,32 +12,34 @@ import { CardItems } from "../components/summarycards/CardItems";
 
 const Orders = () => {
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const [orderData, setOrderData] = useState<[]>([])
+  const [orderData, setOrderData] = useState<[]>([]);
 
   useEffect(() => {
     (async () => {
-      const orderData = await axios("/orderReport.json")
-      setOrderData(orderData.data)
-    })()
-  }, [])
+      const orderData = await axios("/orderReport.json");
+      setOrderData(orderData.data);
+    })();
+  }, []);
   return (
     <div className="mx-4">
-      {CardItems.map((cardItem) => (
-          <SummaryCards
-            title={cardItem.title}
-            figure={cardItem.figure}
-            percentage={cardItem.percentage}
-            icon={cardItem.icon}
-          />
-        ))}
+      {CardItems.map((cardItem, index) => (
+        <SummaryCards
+          key={index}
+          title={cardItem.title}
+          figure={cardItem.figure}
+          percentage={cardItem.percentage}
+          icon={cardItem.icon}
+        />
+      ))}
       <ReusableTable
         tableColumns={ordersColumns}
         tableData={orderData}
         title={"Order Details"}
         headers={undefined}
-        path={"/orders/"} />
+        path={"/orders/"}
+      />
     </div>
-  )
+  );
 };
 
 export default Orders;
