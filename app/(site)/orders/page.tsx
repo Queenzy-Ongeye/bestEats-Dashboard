@@ -17,9 +17,9 @@ const Orders = () => {
   useEffect(() => {
     (async () => {
       const orderData = await axios("/orderReport.json");
-      setOrderData(orderData.data);
+      setOrderData(orderData.data.orders);
     })();
-  }, []);
+  }, []);  
   return (
     <div className="mx-4">
       <div className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2 xl:grid-cols-4">
