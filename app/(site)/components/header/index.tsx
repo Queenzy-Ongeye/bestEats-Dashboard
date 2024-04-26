@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
-import { FaWallet } from "react-icons/fa";
+import { FaFileInvoiceDollar, FaWallet } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
 import Link from "next/link";
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -33,9 +33,9 @@ const Header = () => {
       route: "/orders",
     },
     {
-      icon: <MdFavorite size={25} className="mr-4" />,
-      text: "Favorites",
-      route: "/favorites",
+      icon: <FaFileInvoiceDollar size={25} className="mr-4" />,
+      text: "Invoice",
+      route: "/invoices",
     },
     { icon: <FaWallet size={25} className="mr-4" />, text: "Wallet" },
     { icon: <MdHelp size={25} className="mr-4" />, text: "Help" },
