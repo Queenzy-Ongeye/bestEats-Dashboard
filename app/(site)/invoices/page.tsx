@@ -19,13 +19,12 @@ const InvoicePage = () => {
     (async () => {
       try {
         const invoiceData = await axios("/orderReport.json");
-        setInvoiceData(invoiceData.data);
+        setInvoiceData(invoiceData.data.invoiceRecords);
       } catch (error) {
         console.error("Error fetching invoice data:", error);
       }
     })();
   }, []);
-  console.log("Data is here : ", invoiceData);
 
   return (
     <div>
